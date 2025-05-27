@@ -9,11 +9,9 @@ project_root = os.path.abspath(os.path.join(current_dir, '..'))  # Project_Yolov
 # Đường dẫn tới ảnh và label gốc
 img_dir = os.path.join(project_root, 'datasets', 'cccd', 'images', 'train')
 label_dir = os.path.join(project_root, 'datasets', 'cccd', 'labels', 'train')
-
 # Folder tạm
 temp_img_dir = os.path.join(project_root, 'datasets', 'cccd', 'images', 'temp_train')
 temp_label_dir = os.path.join(project_root, 'datasets', 'cccd', 'labels', 'temp_train')
-
 # Tạo lại thư mục tạm
 if os.path.exists(temp_img_dir):
     shutil.rmtree(temp_img_dir)
