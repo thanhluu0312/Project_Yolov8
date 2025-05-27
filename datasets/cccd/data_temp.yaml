@@ -1,0 +1,12 @@
+path: C:/Users/phaml/PycharmProjects/Project_Yolov8/datasets/cccd  # đường dẫn tới dataset
+train: images/temp_train  # thư mục ảnh train
+val: images/val      # thư mục ảnh val
+
+names:
+  0: avatar        # ảnh chân dung
+  1: name          # họ tên
+  2: id_number     # số CCCD
+  3: dob           # ngày sinh
+  4: gender        # giới tính
+  5: nationality   # quốc tịch
+  6: address       # địa chỉ

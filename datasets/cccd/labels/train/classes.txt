@@ -1,0 +1,7 @@
+avatar
+name
+id_number
+dob
+gender
+nationality
+address
