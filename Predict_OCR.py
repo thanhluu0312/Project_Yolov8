@@ -5,7 +5,6 @@ import easyocr
 import torch
 import numpy as np
 
-
 class IDCardProcessor:
     def __init__(self):
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
