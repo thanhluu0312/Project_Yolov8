@@ -1,45 +1,68 @@
-#  YOLOv8 - Trích xuất thông tin từ CCCD
-
-Dự án sử dụng mô hình **YOLOv8** để phát hiện vùng thông tin trên thẻ **CCCD** (họ tên, số CMND/CCCD, ngày sinh, giới tính, quốc tịch, địa chỉ, ảnh chân dung).
+#  YOLOv8 - Object Detection on Vietnamese ID Cards (CCCD)
+The project uses the **YOLOv8** model to detect information areas on the **CCCD** card (full name, ID card/CCCD number, date of birth, gender, nationality, address, portrait photo).
 
 ---
 
-##  Cấu trúc thư mục
+##  Directory Structure
 
 ```bash
 Project_Yolov8/
-├── datasets/
-│   └── cccd/
-│       ├── images/
-│       │   ├── train/         # Ảnh dùng để huấn luyện
-│       │   └── temp_train/    # Ảnh tạm tạo ra khi train
-│       └── labels/
-│           ├── train/         # Nhãn YOLO tương ứng với ảnh train
-│           └── temp_train/    # Nhãn tạm
-├── yolov8n.pt                 # Model YOLOv8 gốc
-├── yolov8n.pt                 # Model đã fine-tuned
-├── data.yaml                  # File cấu hình dataset cho YOLO
-├── Train.py                   # Script huấn luyện mô hình YOLOv8
-trích xuất thông tin
-├── labelImg/                  # Công cụ tạo nhãn 
-├── README.md
-└── requirements.txt
-
+├── datasets
+│   └── cccd
+│       ├── images
+│       │   ├── train
+│       │   │   ├── img1.jpg
+│       │   │   ├── img2.jpg
+│       │   │   └── ...
+│       ├── labels
+│       │   ├── train
+│       │   │   ├── img1.txt
+│       │   │   ├── img2.txt
+│       │   │   └── ...
+│       └── data_temp.yaml
+├── Train.py
+└── ...
 
 ```
-## Cài Đặt
-1. Clone kho lưu trữ:
+## Workflow
+ 
+The project workflow is straightforward: Given an input image, the YOLOv8 model detects regions of interest. Users can select specific images for training, and the model is fine-tuned on the chosen data. Training results are saved in the Project_Yolov8/runs_train/ directory.
+
+```bash
+Original Image --> [Inference] --> YOLOv8 Object Detector --> [Train] --> Saved Model
+```
+## Installation
+1. Clone the repository::
 ```bash
 git clone <https://github.com/thanhluu0312/Project_Yolov8.git>
 cd Project_Yolov8
 ```
-2. Cài đặt dependencies:
+2. Install dependencies:
 ```bash
 pip install ultralytics
 ```
-3. Chạy script huấn luyện:
+3. Run the training script:
 ```bash
 python Train.py
 ```
-
-
+## Results
+1. Training Details:
+```
+Model: YOLOv8 Small
+Fine-tuned on a custom CCCD dataset
+Training Epochs: 50
+Losses:
+-Train Box Loss: 1.305
+-Validation Box Loss: 1.2908
+-Classification Loss (cls_loss): Smooth L1 loss
+-Total Loss: Gradual decrease, stabilizing around 0.95
+```
+2. Performance Metrics:
+```
+Mean Average Precision (mAP@0.5): 0.995
+mAP@0.5:0.95: 0.531
+```
+3. Precision and Recall:
+```
+Precision: 0.995
+Recall: 0.997
